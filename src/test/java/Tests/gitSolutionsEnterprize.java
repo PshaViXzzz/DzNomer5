@@ -1,4 +1,5 @@
 import com.codeborne.selenide.Configuration;
+import com.codeborne.selenide.DragAndDropOptions;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
@@ -21,5 +22,11 @@ public class gitSolutionsEnterprize {
         $$("a.HeaderMenu-dropdown-link").findBy(text("Enterprise")).click();
         $("#hero-section-brand-heading").shouldBe(visible).shouldHave(allOf(text("The AI-powered"), text("developer platform.")));
     }
-}
 
+    @Test
+    void dragAndDropTest() {
+        open("https://the-internet.herokuapp.com/drag_and_drop");
+        $("#column-a").dragAndDrop(DragAndDropOptions.to($("#column-b")));
+        $("#column-a").shouldHave(text("B"));
+    }
+}
